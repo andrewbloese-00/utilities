@@ -1,0 +1,19 @@
+{
+  "name": "js-utilities",
+  "version": "1.0.0",
+  "description": "a collection of some useful javascript utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewbloese-00/utilities.git"
+  },
+  "author": "Andrew Bloese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewbloese-00/utilities/issues"
+  },
+  "homepage": "https://github.com/andrewbloese-00/utilities#readme"
+}
