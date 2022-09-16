@@ -68,10 +68,23 @@ arrayx.nchunks = ( arr , n , even=false) => {
 }
 
 
+arrayx.sum = ( arr , key=undefined ) => {
+    let sum = 0
+    arr.forEach(item=> key ? sum += item[key] : sum += item )
+    return sum
+}
 
 
+arrayx.swap = (arr,i,j)=>{
+    let t = arr[i]
+    arr[i] = arr[j]
+    arr[j] = t
+}
 
 
-
-
+arrayx.mapToArray = map => { 
+    const arrayMap = []
+    map.forEach( (v,k)=>arrayMap.push([k,v]))
+    return arrayMap
+}
 module.exports = arrayx

@@ -1,3 +1,5 @@
+const arrayx=require("./arrayx")
+
 const vectorx = {}
 
 /**
@@ -9,19 +11,15 @@ const ord = c => c.charCodeAt(0)
 
 /**
  * 
- * @param  {...number} numbers 
- * @returns {number[]} a "vector"
- */
-vectorx.createVector = (...numbers) => [...numbers]
-
-/**
- * 
  * @param {string} word a string of a word to generate a vector for
  * @returns {number[]} an array of numbers of the char code of each character in the entered word
  */
-vectorx.word2vector = ( word ) => { 
+vectorx.word2vector = ( word , shouldNormalize=false ) => { 
     const chars = word.split("").map(c=>c.toLowerCase())
     if(chars.length === 0) return []
+    if(shouldNormalize){
+        return chars.map(c=>ord(c)/255)
+    } else
     return chars.map(c=>ord(c))
 }
 
@@ -41,6 +39,19 @@ vectorx.dot = ( v1, v2 ) => {
 }
 
 
+vectorx.cross = v1 => v2 => {
+    const combinations = v1.flatMap(ci=>v2.map(cj=>[ci,cj]))
+    const Xprod = []
+    console.log(arrayx.nchunks(combinations,v1.length,true))
+    for(let i = 0; i < combinations.length; i++){ //for each dimension 
+        let cX = undefined
+        console.log(combinations[i])
+        Xprod.push(cX)
+    }
+    return Xprod
+}
+    // const perms = v1.reduce((c,dimC)=> [...c, v2.map( dimN => [dimC,dimN])], [] 
+
 /* calculates the length of a vector */
 vectorx.vectorLength = ( v ) => {
     let m = 0
@@ -50,7 +61,6 @@ vectorx.vectorLength = ( v ) => {
     return Math.sqrt(m)
 
 }
-
 
 /**
  * 
@@ -72,7 +82,7 @@ vectorx.makeUniform = (vectors) =>{
     return Vuniform
 }   
 
-
+//comparisons
 vectorx.editdistanceDP = (v1,v2) => {
     if (v1.length === 0) return v2.length; 
     if (v2.length === 0) return v1.length;
@@ -109,7 +119,6 @@ vectorx.editdistanceDP = (v1,v2) => {
 
 }
 
-
 vectorx.lev = (v1,v2)=> {
     if(v1.length === 0 ) return v2.length;
     if(v2.length === 0 ) return v2.length;
@@ -122,17 +131,37 @@ vectorx.lev = (v1,v2)=> {
     )
 }
 
-
-
 vectorx.cosineSimilarity = (x,y) => {
     const [xUniform, yUniform] = vectorx.makeUniform([x,y])
     const {product} = vectorx.dot(xUniform, yUniform)
     return (product / (vectorx.vectorLength(x) * vectorx.vectorLength(y)))
 }
 
-vectorx.cosineDisimilarity = (x,y)=>{
-    return 1-vectorx.cosineSimilarity(x,y)
-    
+vectorx.applyScalar = (scalar,vector) => vector.map(v=>v*scalar)
+
+vectorx.add = ( v1, v2) => { 
+    const [ vA, vB ] = vectorx.makeUniform([v1,v2])
+    let sumVector = []
+    for(let i=0; i<vA.length; i++) {
+        sumVector.push(vA[i] + vB[j])
+    }
+    return sumVector
 }
+
+vectorx.subtract = ( v1, v2 ) => {
+    const v2Negated= vectorx.applyScalar(-1,v2)
+    const [vA, vB] = this.makeUniform([v1,v2Negated])
+    return vectorx.add(vA,vB)
+}
+
+vectorx.vectorAngle = ( v1 , v2 ) => {
+    const [ u1, u2] = vectorx.makeUniform([v1,v2]) 
+    const {product} = vectorx.dot(u1,u2)
+
+    const denominator = (vectorx.vectorLength(v1) * vectorx.vectorLength(v2))
+    return Math.acos((product/denominator))
+}
+
+
 module.exports = vectorx
 
