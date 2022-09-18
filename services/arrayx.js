@@ -87,4 +87,9 @@ arrayx.mapToArray = map => {
     map.forEach( (v,k)=>arrayMap.push([k,v]))
     return arrayMap
 }
+
+
+arrayx.mergeSort = (arr) => { 
+    
+}
 module.exports = arrayx

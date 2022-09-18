@@ -1,11 +1,17 @@
 {
-  "name": "js-utilities",
+  "name": "xjs",
   "version": "1.0.0",
   "description": "a collection of some useful javascript utilities",
+
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node driver.js"
   },
+
+  "publishConfig": {
+    "@andrewbloese-00:registry": "https://npm.pkg.github.com"
+  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andrewbloese-00/utilities.git"
@@ -15,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/andrewbloese-00/utilities/issues"
   },
-  "homepage": "https://github.com/andrewbloese-00/utilities#readme"
+  "homepage": "https://github.com/andrewbloese-00/utilities#readme",
+  "dependencies": {
+    "@alpacahq/alpaca-trade-api": "^2.16.1",
+    "axios": "^0.27.2"
+  }
 }

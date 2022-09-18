@@ -33,7 +33,6 @@ stringx.getWords=  text  => text.split(" ")
  */
 stringx.getChars = text => text.split("")
 
-
 /**
  * 
  * @param {string[]} words a list of words to form a search table for
@@ -132,6 +131,12 @@ stringx.cleanText = text => {
     return stopwords_removed
 }
 
+/**
+ * 
+ * @param {*} text the text to analyze
+ * @param {*} normalize should the frequencies be normalize
+ * @returns {{}} an object containing each word as a key and the frequency of given word as the values
+ */
 stringx.getFrequencyTable = ( text ,normalize=false) => { 
   const words = stringx.getWords(text.toLowerCase())
   let table = {}

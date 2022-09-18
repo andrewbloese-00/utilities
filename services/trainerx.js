@@ -58,7 +58,7 @@ const t_data = [{
 }, {
     input: "Goodbye neighbor",
     output: "(Response) Farewell!"
-} ]
+}]
 
 
 console.log((trainerx.encodeData(t_data,false)))
