@@ -8,10 +8,6 @@
     "run": "node driver.js"
   },
 
-  "publishConfig": {
-    "@andrewbloese-00:registry": "https://npm.pkg.github.com"
-  },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andrewbloese-00/utilities.git"
